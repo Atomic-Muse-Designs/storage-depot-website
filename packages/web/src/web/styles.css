@@ -128,8 +128,53 @@
   @keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
   @keyframes slowzoom { from { transform: scale(1.08); } to { transform: scale(1); } }
   .slowzoom { animation: slowzoom 2.4s cubic-bezier(0.2, 0.7, 0.2, 1) forwards; }
+  .rental-promotion {
+    position: fixed; inset: 0; margin: auto; padding: 0; border: 0;
+    border-top: 4px solid var(--primary); width: min(740px, calc(100vw - 32px));
+    max-height: calc(100dvh - 32px); overflow-y: auto;
+    color: var(--foreground); background: var(--concrete);
+    box-shadow: 0 28px 90px rgb(0 0 0 / 0.45);
+  }
+  .rental-promotion::backdrop { background: rgb(8 10 12 / 0.76); backdrop-filter: blur(5px); }
+  .rental-promotion[open] { animation: promotion-enter 0.28s ease-out; }
+  .promotion-grid { display: grid; grid-template-columns: 1fr 1fr; }
+  .promotion-offer { padding: 46px 34px 44px; background: var(--ink); color: #fff; }
+  .promotion-rule { width: 36px; height: 1px; background: var(--primary); margin: 25px 0 16px; }
+  .promotion-discount { display: block; color: var(--primary); font-size: 112px; letter-spacing: -0.04em; line-height: 0.95; }
+  .promotion-discount span { display: block; margin-top: 8px; font-size: 35px; letter-spacing: 0.06em; }
+  .promotion-headline { display: block; margin-top: 19px; font-size: 39px; line-height: 1.02; }
+  .promotion-action { padding: 56px 34px 26px; display: flex; flex-direction: column; justify-content: center; }
+  .promotion-subtitle { font-family: var(--font-display); text-transform: uppercase; font-size: 26px; font-weight: 600; line-height: 1.12; }
+  .promotion-description { margin-top: 12px; font-size: 16px; line-height: 1.65; color: #53585d; }
+  .promotion-rent { width: 100%; min-height: 52px; margin-top: 20px; }
+  .promotion-decline { align-self: center; margin-top: 4px; padding: 10px 18px; font-size: 13px; text-decoration: underline; text-underline-offset: 4px; color: #53585d; cursor: pointer; }
+  .promotion-decline:hover { color: var(--ink); }
+  .promotion-terms { margin-top: 10px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 11px; line-height: 1.6; color: #62666b; }
+  .promotion-claim { margin-top: 10px; font-size: 12px; line-height: 1.5; color: #53585d; }
+  .promotion-close { position: absolute; top: 12px; right: 12px; width: 44px; height: 44px; display: grid; place-items: center; background: transparent; color: var(--ink); cursor: pointer; }
+  .promotion-close:hover { background: rgb(0 0 0 / 0.06); }
+  .rental-promotion :is(button, a):focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+  .promotion-rent:focus-visible { outline-color: var(--ink) !important; }
+  @keyframes promotion-enter { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  @media (max-width: 600px) {
+    .promotion-grid { grid-template-columns: 1fr; }
+    .promotion-offer { padding: 27px 26px 26px; }
+    .promotion-rule { margin: 19px 0 14px; }
+    .promotion-discount { display: flex; align-items: baseline; gap: 14px; font-size: clamp(74px, 24vw, 100px); }
+    .promotion-discount span { margin-top: 0; font-size: 30px; }
+    .promotion-headline { margin-top: 12px; font-size: 34px; }
+    .promotion-headline br { display: none; }
+    .promotion-close { top: 9px; right: 9px; color: #fff; }
+    .promotion-close:hover { background: rgb(255 255 255 / 0.1); }
+    .promotion-action { padding: 26px; }
+    .promotion-subtitle { font-size: 24px; }
+    .promotion-description { margin-top: 12px; font-size: 15px; }
+    .promotion-rent { margin-top: 21px; }
+    .promotion-terms { margin-top: 12px; padding-top: 14px; }
+  }
   @media (prefers-reduced-motion: reduce) {
     .reveal, .rise { opacity: 1; transform: none; animation: none; transition: none; }
     .slowzoom { animation: none; }
+    .rental-promotion[open] { animation: none; }
   }
 }

@@ -31,3 +31,6 @@ Home, Units & Pricing, Facility & Security, Contact. Sticky header with amber "R
 
 ## Motion
 Staggered fade-up on hero load; scroll reveals on sections (IntersectionObserver, CSS transitions). Respect reduced motion.
+
+## Customer promotion
+Site-wide modal, 3 seconds after every full page load or return visit. No cooldown or suppression after CTA activation, per revised client instructions. Square-edged ink offer panel with oversized gold 50% display type, concrete action panel, gold rental CTA, discreet decline link and accessible close control. Two-column desktop layout becomes stacked on mobile, with viewport-safe scrolling. Native dialog provides focus trapping and background inertness. Offer wording includes both existing and new customers. Original compact two-panel layout is retained with discreet claim text rather than an additional callout. Bottom claim instructions ask visitors to call or visit the office and mention the special after reserving. No database or booking eligibility enforcement is added.
