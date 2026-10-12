@@ -65,6 +65,20 @@ export function Faq({ limit }: { limit?: number }) {
   const items = limit ? FAQS.slice(0, limit) : FAQS;
   return (
     <div className="border-t border-border">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: items.map((f) => ({
+              "@type": "Question",
+              name: f.q,
+              acceptedAnswer: { "@type": "Answer", text: f.a },
+            })),
+          }).replace(/</g, "\\u003c"),
+        }}
+      />
       {items.map((f, i) => {
         const isOpen = open === i;
         return (
