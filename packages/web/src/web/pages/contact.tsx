@@ -5,6 +5,7 @@ import { Layout, PageHero, Reveal } from "../components/layout";
 import { Faq } from "../components/blocks";
 import { orpc } from "../lib/api";
 import { CITY, HOURS, MAPS_EMBED, MAPS_URL, PHONE, PHONE_HREF, STREET, UHAUL_URL, UNITS } from "../lib/site";
+import { usePageMeta } from "../hooks/use-page-meta";
 
 const field = "mt-2 w-full font-sans text-foreground normal-case tracking-normal font-normal border border-input bg-white px-3.5 py-3 text-[0.95rem] outline-none transition focus:border-primary";
 const label = "font-display text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground";
@@ -79,6 +80,10 @@ function InquiryForm() {
 }
 
 export default function Contact() {
+  usePageMeta(
+    "Contact & Location | Storage Depot Alexander City, AL",
+    "Visit or contact Storage Depot at 277 Joseph Street, Alexander City, AL 35010. Call (256) 369-1198 or get directions.",
+  );
   return (
     <Layout>
       <PageHero

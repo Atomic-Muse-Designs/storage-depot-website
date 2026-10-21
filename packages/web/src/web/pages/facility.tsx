@@ -3,6 +3,7 @@ import { CtaBand, Layout, PageHero, Reveal } from "../components/layout";
 import { Gallery } from "../components/blocks";
 import { FEATURES } from "../lib/features";
 import { CITY, HOURS, MAPS_URL, PHONE, PHONE_HREF, STREET } from "../lib/site";
+import { usePageMeta } from "../hooks/use-page-meta";
 
 const CLIMATE = [
   ["Wood and upholstery", "Alabama summers swing from dry heat to soaking humidity in a day. Unconditioned storage lets wood joints swell and shrink until they loosen, and gives mildew a foothold in cushions and mattresses."],
@@ -11,6 +12,10 @@ const CLIMATE = [
 ];
 
 export default function Facility() {
+  usePageMeta(
+    "Facility & Security | Storage Depot Alexander City, AL",
+    "Interior climate-controlled units at 277 Joseph Street, Alexander City, AL, behind an electronic gate with alarm protection. See what's inside.",
+  );
   return (
     <Layout>
       <PageHero

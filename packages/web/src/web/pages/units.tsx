@@ -2,6 +2,7 @@ import { ArrowUpRight, Check, Phone } from "lucide-react";
 import { CtaBand, Layout, PageHero, Reveal } from "../components/layout";
 import { Footprint, UnitCard } from "../components/blocks";
 import { PHONE, PHONE_HREF, UHAUL_URL, UNITS } from "../lib/site";
+import { usePageMeta } from "../hooks/use-page-meta";
 
 const INCLUDED = [
   "Interior unit inside the building",
@@ -17,6 +18,10 @@ const INCLUDED = [
 ];
 
 export default function Units() {
+  usePageMeta(
+    "Units & Pricing | Storage Depot Alexander City, AL",
+    "Four climate-controlled storage sizes from $75 to $135/month in Alexander City, AL. Compare sizes and reserve online today.",
+  );
   return (
     <Layout>
       <PageHero
