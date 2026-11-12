@@ -13,6 +13,23 @@ type TrackingWindow = Window & {
   gtag?: Gtag;
 };
 
+type Installation = { users: number; remove: () => void };
+let activeInstallation: Installation | undefined;
+
+function subscribe(installation: Installation) {
+  installation.users += 1;
+  let released = false;
+  return () => {
+    if (released) return;
+    released = true;
+    installation.users -= 1;
+    if (installation.users === 0) {
+      installation.remove();
+      activeInstallation = undefined;
+    }
+  };
+}
+
 /** Use the already configured GTM Google Ads destination; never load another tag. */
 function sendConversion(params: ConversionParams) {
   const tracking = window as TrackingWindow;
@@ -26,6 +43,8 @@ function sendConversion(params: ConversionParams) {
 
 /** One delegated listener also covers mobile, unit cards and dynamically shown CTAs. */
 export function installBookingConversionTracking() {
+  // Shared callers reuse one listener pair; effect remounts cannot duplicate hits.
+  if (activeInstallation) return subscribe(activeInstallation);
   const activate = (event: MouseEvent) => {
     if (event.defaultPrevented) return;
     if (event.type === "click" && event.button !== 0) return;
@@ -74,8 +93,12 @@ export function installBookingConversionTracking() {
 
   document.addEventListener("click", activate, true);
   document.addEventListener("auxclick", activate, true);
-  return () => {
-    document.removeEventListener("click", activate, true);
-    document.removeEventListener("auxclick", activate, true);
+  activeInstallation = {
+    users: 0,
+    remove: () => {
+      document.removeEventListener("click", activate, true);
+      document.removeEventListener("auxclick", activate, true);
+    },
   };
+  return subscribe(activeInstallation);
 }
