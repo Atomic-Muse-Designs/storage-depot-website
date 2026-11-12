@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Route, Switch } from "wouter";
 import Index from "./pages/index";
 import Units from "./pages/units";
@@ -5,9 +6,11 @@ import Facility from "./pages/facility";
 import Contact from "./pages/contact";
 import { Provider } from "./components/provider";
 import { RentalPromotion } from "./components/rental-promotion";
+import { installBookingConversionTracking } from "./lib/booking-conversion";
 import { AgentFeedback, RunableBadge } from "@runablehq/website-runtime";
 
 function App() {
+  useEffect(installBookingConversionTracking, []);
   return (
     <Provider>
       <Switch>
